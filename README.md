@@ -1,7 +1,7 @@
+This projects contains a set of high-res images of poker cards, with a drop shadows for use in iOS applications. It also contains instructions to regenerate them at any resolution or with different shadow parameters.
+
 Initial card design obtained from https://sourceforge.net/projects/vector-cards/?source=typ_redirect
-
 They were split into single files using [Sketch](https://www.sketchapp.com/)
-
 They were then converted to fix the maximum sized indicated by https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions, that is:
 
 ```
@@ -37,7 +37,3 @@ for png in $(find png -name \*.png); do
   ./shadow.sh $png 10 ${png/#png/final}
 done
 ```
-
-find png/1x -name \*.png -print0 | xargs -0 -n 1 -I % ./shadow.sh % 10 final/1x/$(basename %)
-find png/2x -name \*.png -print0 | xargs -0 -n 1 -I % ./shadow.sh % 10 final/2x/$(basename %)
-find png/3x -name \*.png -print0 | xargs -0 -n 1 -I % ./shadow.sh % 10 final/3x/$(basename %)
