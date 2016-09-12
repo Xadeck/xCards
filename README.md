@@ -1,5 +1,7 @@
 This projects contains a set of high-res images of poker cards, with a drop shadows for use in iOS applications. It also contains instructions to regenerate them at any resolution or with different shadow parameters.
 
+![king of spades](https://raw.githubusercontent.com/Xadeck/cards/master/final/1x/KS.png)
+
 Initial card design obtained from https://sourceforge.net/projects/vector-cards/?source=typ_redirect
 They were split into single files using [Sketch](https://www.sketchapp.com/)
 They were then converted to fix the maximum sized indicated by https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions, that is:
@@ -10,7 +12,7 @@ They were then converted to fix the maximum sized indicated by https://www.paint
 1242x2208
 ```
 
-Poker cards have dimensions of 63.5x88.9 according to [wikipedia](https://en.wikipedia.org/wiki/Standard_52-card_deck), which means an aspect ratio of 0.714. Applying that to above dimensions with fixed width yields the following sizes:
+Poker cards have dimensions of 63.5cmx88.9cm according to [wikipedia](https://en.wikipedia.org/wiki/Standard_52-card_deck), which means an aspect ratio of 0.714. Applying that to above dimensions with fixed width yields the following sizes:
   
 ```
 320x448
