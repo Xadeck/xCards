@@ -19,9 +19,18 @@ Since cards have a different aspect ratio, the resulting size are
 1242x1744
 ```
 
-A drop shadow was then added using imagemagick and the `shadow.sh` script. Each size is enlarged by ~30% of its width.
+A drop shadow was then added using imagemagick and the `shadow.sh` script. Each size is enlarged by ~10% of its width (that is the `x10` part of the command line below).
 
 ```
-shadow png/1x/2C.png 320x449x30 
+for path in $(find png/1x -name \*.png); do
+  ./shadow.sh $path 320x449x10 final/1x/$(basename $path)
+done
+for path in $(find png/2x -name \*.png); do
+  ./shadow.sh $path 750x1053x10 final/2x/$(basename $path)
+done
+for path in $(find png/3x -name \*.png); do
+  echo ./shadow.sh $path 1242x1744x10 final/3x/$(basename $path)
+done
 ```
 
+find png/3x -name \*.png -print0 | parallel -q0 echo ./shadow.sh {} 1242x1744x10 final/3x/{/}
