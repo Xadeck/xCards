@@ -40,7 +40,6 @@ if [ ! -f $SHADOW ]; then
          -gaussian-blur 0x$SIGMA \
          $SHADOW
 fi
-exit 1
 # Imagemagick script to combine drop shadow and the card.
 # (in [] is the size of the image stack)
 #

@@ -11,7 +11,7 @@ They were then converted to fix the maximum sized indicated by https://www.paint
 ```
 
 Poker cards have dimensions of 63.5x88.9 according to [wikipedia](https://en.wikipedia.org/wiki/Standard_52-card_deck), which means an aspect ratio of 0.714. Applying that to above dimensions with fixed width yields the following sizes:
-
+  
 ```
 320x448
 750x1050
@@ -23,16 +23,21 @@ Using [ImageMagick](http://www.imagemagick.org/), conversion is done via:
 ```bash
 for svg in $(find svg -name \*.svg); do
   basename=$(basename $svg .svg)
-  convert -background none -resize   320x448\! $svg png/1x/${basename}.png
-  convert -background none -resize  750x1050\! $svg png/2x/${basename}.png
-  convert -background none -resize 1242x1739\! $svg png/3x/${basename}.png
+  options="-background none -density 1200"
+  convert $options -resize   320x448\! $svg png/1x/${basename}.png
+  convert $options -resize  750x1050\! $svg png/2x/${basename}.png
+  convert $options -resize 1242x1739\! $svg png/3x/${basename}.png
 done
 ```
 
 A drop shadow was then added using imagemagick and the `shadow.sh` script. Each size is enlarged by ~10% of its width (that is the `10` part of the command lines below).
 
 ```
+for png in $(find png -name \*.png); do
+  ./shadow.sh $png 10 ${png/#png/final}
+done
+```
+
 find png/1x -name \*.png -print0 | xargs -0 -n 1 -I % ./shadow.sh % 10 final/1x/$(basename %)
 find png/2x -name \*.png -print0 | xargs -0 -n 1 -I % ./shadow.sh % 10 final/2x/$(basename %)
 find png/3x -name \*.png -print0 | xargs -0 -n 1 -I % ./shadow.sh % 10 final/3x/$(basename %)
-```
