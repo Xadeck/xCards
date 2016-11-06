@@ -1,6 +1,6 @@
 This projects contains a set of high-res images of poker cards, with a drop shadows for use in iOS applications. It also contains instructions to regenerate them at any resolution or with different shadow parameters.
 
-![king of spades](https://raw.githubusercontent.com/Xadeck/cards/master/final/1x/KS.png)
+![king of spades](https://raw.githubusercontent.com/Xadeck/xCards/master/shadowed/1x/KS.png)
 
 Initial card design obtained from https://sourceforge.net/projects/vector-cards/?source=typ_redirect
 They were split into single files using [Sketch](https://www.sketchapp.com/)
@@ -36,6 +36,6 @@ A drop shadow was then added using imagemagick and the `shadow.sh` script. Each 
 
 ```
 for png in $(find png -name \*.png); do
-  ./shadow.sh $png 10 ${png/#png/final}
+  ./shadow.sh $png 10 ${png/#png/shadowed}
 done
 ```
