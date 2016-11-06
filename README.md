@@ -39,3 +39,5 @@ for png in $(find png -name \*.png); do
   ./shadow.sh $png 10 ${png/#png/shadowed}
 done
 ```
+
+Joker image was found on the web. I could not get licensing information so contact me if you think it's not usable. The image was manually edited with [Pixelmator](www.pixelmator.com) to have the same round corners than the other cards, in all three resolutions.
