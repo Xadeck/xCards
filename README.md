@@ -1,6 +1,6 @@
-This projects contains a set of high-res images of poker cards, with a drop shadows for use in iOS applications. It also contains instructions to regenerate them at any resolution or with different shadow parameters.
+This projects contains a set of high-res images of poker cards, for use in iOS applications. It also contains instructions to regenerate them at any resolution.
 
-![king of spades](https://raw.githubusercontent.com/Xadeck/xCards/master/shadowed/1x/KS.png)
+![king of spades](https://raw.githubusercontent.com/Xadeck/xCards/master/demo.png)
 
 Initial card design obtained from https://sourceforge.net/projects/vector-cards/?source=typ_redirect
 They were split into single files, and exported as SVG using [Sketch](https://www.sketchapp.com/).
@@ -32,14 +32,6 @@ for svg in $(find svg -name \*.svg); do
 done
 ```
 
-A drop shadow was then added using imagemagick and the `shadow.sh` script. Each size is enlarged by ~10% of its width (that is the `10` part of the command lines below).
-
-```
-for png in $(find png -name \*.png); do
-  ./shadow.sh $png 10 ${png/#png/shadowed}
-done
-```
-
 Joker image was found on the web. I could not get licensing information so contact me if you think it's not usable. The image was manually edited with [Pixelmator](www.pixelmator.com) to have the same round corners than the other cards, in all three resolutions.
 
 For the ranks and suits, they were converted with:
@@ -64,3 +56,15 @@ for color in red black; do
   done
 done
 ```
+
+## Adding shadows
+
+When using the images in an iOS app, use builtin shadowing support. If you want to generate an image with shadow burnt in, you can use imagemagick and the `shadow.sh` script. For example to duplicate all images under `png` directory to a `shadowed` directory (beware that it will take time).
+
+```
+for png in $(find png -name \*.png); do
+  ./shadow.sh $png 10 ${png/#png/shadowed}
+done
+```
+
+Each size is enlarged by ~10% of its width (that is the `10` part of the command lines above).
