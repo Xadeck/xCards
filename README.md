@@ -45,20 +45,22 @@ Joker image was found on the web. I could not get licensing information so conta
 For the ranks and suits, they were converted with:
 
 ```bash
-for suit in spade club heart diamond king; do  
-  svg=svg/black-$rank.svg
+for suit in spade club heart diamond; do  
+  svg=svg/${suit}.svg
   basename=$(basename $svg .svg)
   options="-background none -density 1200"
   convert $options -resize   320x320 $svg png/1x/${basename}.png
   convert $options -resize   750x750 $svg png/2x/${basename}.png
   convert $options -resize 1242x1242 $svg png/3x/${basename}.png
 done
-for rank in ace two three four five six seven eight nine ten jack queen king; do  
-  svg=svg/black-$rank.svg
-  basename=$(basename $svg .svg)
-  options="-background none -density 1200"
-  convert $options -resize   320x320 $svg png/1x/${basename}.png
-  convert $options -resize   750x750 $svg png/2x/${basename}.png
-  convert $options -resize 1242x1242 $svg png/3x/${basename}.png
+for color in red black; do
+  for rank in ace two three four five six seven eight nine ten jack queen king; do  
+    svg=svg/${color}-${rank}.svg
+    basename=$(basename $svg .svg)
+    options="-background none -density 1200"
+    convert $options -resize   320x320 $svg png/1x/${basename}.png
+    convert $options -resize   750x750 $svg png/2x/${basename}.png
+    convert $options -resize 1242x1242 $svg png/3x/${basename}.png
+  done
 done
 ```
