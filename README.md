@@ -23,12 +23,12 @@ Poker cards have dimensions of 63.5cmx88.9cm according to [wikipedia](https://en
 Using [ImageMagick](http://www.imagemagick.org/), conversion is done via:
 
 ```bash
-for svg in $(find svg -name \*.svg); do
+for svg in $(find svg/face -name ??.svg); do
   basename=$(basename $svg .svg)
   options="-background none -density 1200"
-  convert $options -resize   320x448\! $svg png/${basename}@1x.png
-  convert $options -resize  750x1050\! $svg png/${basename}@2x.png
-  convert $options -resize 1242x1739\! $svg png/${basename}@3x.png
+  convert $options -resize   320x448\! $svg png/face/${basename}@1x.png
+  convert $options -resize  750x1050\! $svg png/face/${basename}@2x.png
+  convert $options -resize 1242x1739\! $svg png/face/${basename}@3x.png
 done
 ```
 
