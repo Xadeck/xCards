@@ -23,7 +23,7 @@ Poker cards have dimensions of 63.5cmx88.9cm according to [wikipedia](https://en
 Using [ImageMagick](http://www.imagemagick.org/), conversion is done via:
 
 ```bash
-for svg in $(find svg/face -name ??.svg); do
+for svg in $(find svg/face -name *.svg); do
   basename=$(basename $svg .svg)
   options="-background none -density 1200"
   convert $options -resize   320x448\! $svg png/face/${basename}@1x.png
@@ -34,12 +34,37 @@ done
 
 Joker image was found on the web. I could not get licensing information so contact me if you think it's not usable. The image was manually edited with [Pixelmator](www.pixelmator.com) to have the same round corners than the other cards, in all three resolutions.
 
+## Rank and suits
+
+The size below have hights matching that of cards:
+
+```bash
+for svg in $(find svg/rank -name *.svg); do
+  basename=$(basename $svg .svg)
+  options="-background none -density 1200"
+  convert $options -resize   261x320\! $svg png/rank/${basename}@1x.png
+  convert $options -resize   612x750\! $svg png/rank/${basename}@2x.png
+  convert $options -resize 1014x1242\! $svg png/rank/${basename}@3x.png
+done
+```
+
+```bash
+for svg in $(find svg/suit -name *.svg); do
+  basename=$(basename $svg .svg)
+  options="-background none -density 1200"
+  convert $options -resize   198x320\! $svg png/suit/${basename}@1x.png
+  convert $options -resize   464x750\! $svg png/suit/${basename}@2x.png
+  convert $options -resize  768x1242\! $svg png/suit/${basename}@3x.png
+done
+```
+
 ## Adding shadows
 
 When using the images in an iOS app, use builtin shadowing support. If you want to generate an image with shadow burnt in, you can use imagemagick and the `shadow.sh` script. For example to duplicate all images under `png` directory to a `shadowed` directory (beware that it will take time).
 
 ```
-for png in $(find png -name ??.png); do
+mkdir -p shadowed/face
+for png in $(find png/face -name ??.png); do
   ./shadow.sh $png 10 ${png/#png/shadowed}
 done
 ```
