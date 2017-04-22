@@ -26,43 +26,20 @@ Using [ImageMagick](http://www.imagemagick.org/), conversion is done via:
 for svg in $(find svg -name \*.svg); do
   basename=$(basename $svg .svg)
   options="-background none -density 1200"
-  convert $options -resize   320x448\! $svg png/1x/${basename}.png
-  convert $options -resize  750x1050\! $svg png/2x/${basename}.png
-  convert $options -resize 1242x1739\! $svg png/3x/${basename}.png
+  convert $options -resize   320x448\! $svg png/${basename}@1x.png
+  convert $options -resize  750x1050\! $svg png/${basename}@2x.png
+  convert $options -resize 1242x1739\! $svg png/${basename}@3x.png
 done
 ```
 
 Joker image was found on the web. I could not get licensing information so contact me if you think it's not usable. The image was manually edited with [Pixelmator](www.pixelmator.com) to have the same round corners than the other cards, in all three resolutions.
-
-For the ranks and suits, they were converted with:
-
-```bash
-for suit in spade club heart diamond; do  
-  svg=svg/${suit}.svg
-  basename=$(basename $svg .svg)
-  options="-background none -density 1200"
-  convert $options -resize   320x320 $svg png/1x/${basename}.png
-  convert $options -resize   750x750 $svg png/2x/${basename}.png
-  convert $options -resize 1242x1242 $svg png/3x/${basename}.png
-done
-for color in red black; do
-  for rank in ace two three four five six seven eight nine ten jack queen king; do  
-    svg=svg/${color}-${rank}.svg
-    basename=$(basename $svg .svg)
-    options="-background none -density 1200"
-    convert $options -resize   320x320 $svg png/1x/${basename}.png
-    convert $options -resize   750x750 $svg png/2x/${basename}.png
-    convert $options -resize 1242x1242 $svg png/3x/${basename}.png
-  done
-done
-```
 
 ## Adding shadows
 
 When using the images in an iOS app, use builtin shadowing support. If you want to generate an image with shadow burnt in, you can use imagemagick and the `shadow.sh` script. For example to duplicate all images under `png` directory to a `shadowed` directory (beware that it will take time).
 
 ```
-for png in $(find png -name \*.png); do
+for png in $(find png -name ??.png); do
   ./shadow.sh $png 10 ${png/#png/shadowed}
 done
 ```
