@@ -42,9 +42,9 @@ The size below have hights matching that of cards:
 for svg in $(find svg/rank -name *.svg); do
   basename=$(basename $svg .svg)
   options="-background none -density 1200"
-  convert $options -resize   261x320\! $svg png/rank/${basename}@1x.png
-  convert $options -resize   612x750\! $svg png/rank/${basename}@2x.png
-  convert $options -resize 1014x1242\! $svg png/rank/${basename}@3x.png
+  convert $options -resize   261x320 $svg png/rank/${basename}@1x.png
+  convert $options -resize   612x750 $svg png/rank/${basename}@2x.png
+  convert $options -resize 1014x1242 $svg png/rank/${basename}@3x.png
 done
 ```
 
@@ -52,9 +52,9 @@ done
 for svg in $(find svg/suit -name *.svg); do
   basename=$(basename $svg .svg)
   options="-background none -density 1200"
-  convert $options -resize   198x320\! $svg png/suit/${basename}@1x.png
-  convert $options -resize   464x750\! $svg png/suit/${basename}@2x.png
-  convert $options -resize  768x1242\! $svg png/suit/${basename}@3x.png
+  convert $options -resize   198x320 $svg png/suit/${basename}@1x.png
+  convert $options -resize   464x750 $svg png/suit/${basename}@2x.png
+  convert $options -resize  768x1242 $svg png/suit/${basename}@3x.png
 done
 ```
 
